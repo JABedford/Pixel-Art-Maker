@@ -1,4 +1,4 @@
-//Declare input variables with the default settings
+// Variable declaration
 const canvasCtl = $('#pixel_canvas');
 var cWidth = 10;
 var cHeight = 10;
@@ -11,15 +11,16 @@ var styleNo = 0;
 
 var undoRedoManager = [];
 
-// Load the default Canvas with the default settings
+
+
 $(document).ready(makeGrid());
 
 
 /*****************
-Functions
+*   Functions    *
 *****************/
 
-// Creating the Canvas
+// Define the amount of pixels on the canvas
 function makeGrid() {
     $('tr').remove();
     for (var h = 0; h < cHeight; h++) {
@@ -59,11 +60,11 @@ function clearUndoRedoManager() {
     $('#undo').attr('disabled', 'disabled');
 }
 
-/*****************
-Event Listeners
-*****************/
+/******************
+* Event Listeners *
+*******************/
 
-// Getting the inputs and make the grid on the submit button.
+// Sumbit button after user input.
 $('#submit').click(function () {
     cWidth = $('#input_width').val();
     cHeight = $('#input_height').val();
