@@ -1,32 +1,35 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Pixel Art Maker!</title>
+    <title>Pixel Art Maker | Countryside Coder</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
-    <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <h1>Pixel Art Maker</h1>
-    <h3>Created by The Countryside Coder</h3>
+    <h2>Created by the Countryside Coder</h2>
 
-    <h2>Choose Grid Size</h2>
+    <h3>Choose Grid Size</h3>
     <form id="sizePicker">
         Grid Height:
-        <input type="number" id="input_height" name="height" min="1" value="1">
+        <input type="number" id="input_height" name="height" min="1" value="10">
         Grid Width:
-        <input type="number" id="input_width" name="width" min="1" value="1">
-        <input type="submit">
+        <input type="number" id="input_width" name="width" min="1" value="10">
+        <button id="submit" type="button">Submit</button >
     </form>
 
-    <h2>Pick A Color</h2>
+    <h3>Pick A Color</h3>
     <input type="color" id="colorPicker">
 
-    <h2>Design Canvas</h2>
+    <section class="features">
+        <button id="undo" disabled><img src="https://image.ibb.co/fPd9uw/undo.png" /></button>
+        <button id="redo" disabled><img src="https://image.ibb.co/hYGvZw/redo.png" /></button>
+        <button id="erase"><img src="https://image.ibb.co/kWVNEw/erase.png" /></button>
+    </section>
+    <h3 id="designheader">Design Canvas</h3>
     <table id="pixel_canvas"></table>
 
+    <div class="hidden"/>
+    <script src="script.js"></script>
 </body>
-
 </html>
