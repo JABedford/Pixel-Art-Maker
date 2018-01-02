@@ -1,7 +1,7 @@
 // Variable declaration
 const canvasCtl = $('#pixel_canvas');
-var cWidth = 10;
-var cHeight = 10;
+var canvasWidth = 10;
+var canvasHeight = 10;
 
 var isMouseDown = false;
 var isEraseSelected = false;
@@ -23,9 +23,9 @@ $(document).ready(makeGrid());
 // Define the amount of pixels on the canvas
 function makeGrid() {
     $('tr').remove();
-    for (var h = 0; h < cHeight; h++) {
+    for (var h = 0; h < canvasHeight; h++) {
         var row = '<tr>'
-        for (var w = 0; w < cWidth; w++) {
+        for (var w = 0; w < canvasWidth; w++) {
             tdNo++;
             row += '<td id="td' + tdNo + '"></td>'
         }
@@ -66,8 +66,8 @@ function clearUndoRedoManager() {
 
 // Sumbit button after user input.
 $('#submit').click(function () {
-    cWidth = $('#input_width').val();
-    cHeight = $('#input_height').val();
+    canvasWidth = $('#input_width').val();
+    canvasHeight = $('#input_height').val();
     makeGrid();
     
   for(var i = 0; i < styleNo; i++) {
