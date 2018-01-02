@@ -1,39 +1,126 @@
-$(document).ready(function(){
+//Declare input variables with the default settings
+const canvasCtl = $('#pixel_canvas');
+var cWidth = 10;
+var cHeight = 10;
 
-	// When size is submitted by the user
-	$('#sizePicker').children().last().on('click', function(e){
-		e.preventDefault();//prevent the page reload
-		clearGrid();
-		makeGrid();
-		assignColor();
-	});
+var isMouseDown = false;
+var isEraseSelected = false;
 
-	// Function making the grid from user's input of the number of rows and columns
-	function makeGrid() {
-		// Select size input
-		const selectRow = $('#input_height').val();
-		const selectCol = $('#input_width').val();
-		// Create the grid
-		for(let row = 0; row < selectRow; row++){
-			$('#pixel_canvas').append('<tr></tr>');
-			for(let col = 0; col < selectCol; col++){
-				$('tr:last').append('<td></td>');
-			};
-		};
-	};
+var tdNo = 0;
+var styleNo = 0;
 
-	// Clear the grid
-	function clearGrid(){
-		$('#pixel_canvas').children().remove();
-	};
+var undoRedoManager = [];
 
-	// Create function to assign color to the canvas
-	function assignColor(){
-		$('td').on('click', function(){
-			// Select color input
-			const selectColor = $('#colorPicker').val();
-			// Assign the selected color to the canvas
-			$(this).css('background', selectColor);
-		});
-	};
+// Load the default Canvas with the default settings
+$(document).ready(makeGrid());
+
+
+/*****************
+Functions
+*****************/
+
+// Creating the Canvas
+function makeGrid() {
+    $('tr').remove();
+    for (var h = 0; h < cHeight; h++) {
+        var row = '<tr>'
+        for (var w = 0; w < cWidth; w++) {
+            tdNo++;
+            row += '<td id="td' + tdNo + '"></td>'
+        }
+        row += '</tr>'
+
+        canvasCtl.append(row);
+    }
+}
+
+// Draw the cell with adding style for it.
+function draw(current_td) {
+    var tdCurrentColor = $('#' + current_td).css('background-color')
+    var tdColor = isEraseSelected ? '#fff' : $('#colorPicker').val();
+
+    $('.hidden').css('background-color', tdColor);
+
+    if (!(tdCurrentColor === $('.hidden').css('background-color'))) {
+        clearUndoRedoManager();
+      $('#undo').removeAttr('disabled');
+        styleNo++;
+        var styleId = styleNo;
+        $("<style id='" + styleId + "' type='text/css'> #" + current_td + "{ background-color: " + tdColor + ";}</style>").appendTo("head");
+    }
+    lastStyleId = styleId;
+
+    //current_td.css('background-color', tdColor);
+}
+
+function clearUndoRedoManager() {
+    undoRedoManager = [];
+    $('#redo').attr('disabled', 'disabled');
+    $('#undo').attr('disabled', 'disabled');
+}
+
+/*****************
+Event Listeners
+*****************/
+
+// Getting the inputs and make the grid on the submit button.
+$('#submit').click(function () {
+    cWidth = $('#input_width').val();
+    cHeight = $('#input_height').val();
+    makeGrid();
+    
+  for(var i = 0; i < styleNo; i++) {
+    $('#' + i).remove();
+  }
+  styleNo = 0;
+    clearUndoRedoManager();
+});
+
+// Draw the color by clicking the cell
+canvasCtl.on('mousedown', 'td', function () {
+    draw($(this).attr('id'));
+    isMouseDown = true;
+});
+
+// Draw the color while moving over the cells with pressing the mouse.
+canvasCtl.on('mousemove', 'td', function () {
+    if (isMouseDown) {
+        draw($(this).attr('id'));
+    }
+});
+
+// Set the flag that will be using to stroke the drawing.
+$(document).mouseup(function () {
+    isMouseDown = false;
+});
+
+$('#erase').click(function () {
+    $(this).toggleClass('selected');
+    isEraseSelected = $(this).hasClass('selected');
+});
+
+$('#redo').click(function () {
+    if (undoRedoManager.length > 0) {
+        var lastStyle = undoRedoManager.pop();
+        $(lastStyle).appendTo("head");
+        styleNo++;
+        $('#undo').removeAttr('disabled');
+    }
+
+    if (undoRedoManager.length === 0) {
+        $('#redo').attr('disabled', 'disabled');
+    }
+});
+
+$('#undo').click(function () {
+    if (styleNo > 0) {
+        var lastStyle = $('#' + styleNo).remove();
+        styleNo--;
+        undoRedoManager.push(lastStyle);
+        $('#redo').removeAttr('disabled');
+    }
+
+    if (styleNo === 0) {
+        $('#undo').attr('disabled', 'disabled');
+    }
 });
