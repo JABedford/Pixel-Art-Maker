@@ -33,8 +33,39 @@ tr {
 
 td {
     width: 20px;
+    background-color: #fff;
 }
 
 input[type=number] {
     width: 6em;
+}
+
+.features {
+    padding: 10px;
+    height: 20px;
+    margin: 10px;
+}
+
+.features img{
+    height: 25px;
+}
+
+.selected {
+    background-color: gray;
+}
+
+#designheader {
+    padding: 0;
+    margin: 5px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
