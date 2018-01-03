@@ -8,12 +8,13 @@
 <body>
     <h1>Pixel Art Maker</h1>
     <h2>Created by the Countryside Coder</h2>
-
-    <h3>Choose Grid Size</h3>
+    <br>
+    <br>
+    <h3>How big would you like your canvas to be?</h3>
     <form id="sizePicker">
-        Grid Height:
+        Canvas Height:
         <input type="number" id="input_height" name="height" min="1" value="10">
-        Grid Width:
+        Canvas Width:
         <input type="number" id="input_width" name="width" min="1" value="10">
         <button id="submit" type="button">Submit</button >
     </form>
@@ -27,8 +28,9 @@
         <button id="erase"><img src="https://image.flaticon.com/icons/svg/503/503728.svg" height="20px" width="20px"/></button>
     </section>
     <h3 id="designheader">Design Canvas</h3>
-    <table id="pixel_canvas"></table>
-
+    <!--<div class="frame">
+    <img id="frame" src="frame.png">--><table id="pixel_canvas"></table><!--</img>-->
+  </div>
     <div class="hidden"/>
     <script src="script.js"></script>
 </body>
