@@ -1,19 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
+@import url('https://fonts.googleapis.com/css?family=Homemade+Apple');
+@import url('https://fonts.googleapis.com/css?family=League+Script');
+@import url('https://fonts.googleapis.com/css?family=Kavivanar');
+
+
+
+
 body {
     text-align: center;
 }
 
 h1 {
-    font-family: Monoton;
-    font-size: 70px;
-    margin: 0.2em;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 120px;
+    font-weight: lighter;
+    margin: 0.1em;
 }
 
 h2 {
-    margin: 1em 0 0.25em;
+      font-family: 'League Script', cursive;
+      font-size: 40px;
+      margin: 1em 0 0.25em;
 }
 
+h3 {
+      font-family: 'Kavivanar', cursive;
+  }
 h2:first-of-type {
     margin-top: 0.5em;
+}
+
+button {
+    font-family: 'Kavivanar', cursive;
+    font-size: 18px;
+    background-color: white;
 }
 
 table,
@@ -40,6 +60,7 @@ input[type=number] {
     width: 6em;
 }
 
+
 .features {
     padding: 10px;
     height: 20px;
@@ -59,13 +80,34 @@ input[type=number] {
     margin: 5px;
 }
 
+#sizePicker{
+  font-family: 'Kavivanar', cursive;
+  font-size: 18px;
+}
+
+#input_height {
+    font-family: 'Kavivanar', cursive;
+    font-size: 18px;
+}
+
+#input_width {
+    font-family: 'Kavivanar', cursive;
+    font-size: 18px;
+}
+
+#frame {
+    position: absolute;
+    z-index: -1;
+}
+
 .hidden {
     visibility: hidden;
 }
 
 button:disabled,
 button[disabled]{
+  font-family: 'Kavivanar', cursive;
   border: 1px solid #999999;
-  background-color: #cccccc;
+  background-color: gray;
   color: #666666;
 }
