@@ -1,15 +1,11 @@
-// Variable declaration
 const canvasCtl = $('#pixel_canvas');
 var canvasWidth = 10;
 var canvasHeight = 10;
-
 var isMouseDown = false;
 var isEraseSelected = false;
-
 var tdNo = 0;
 var styleNo = 0;
-
-var undoRedoManager = [];
+var undoRedo = [];
 
 
 
@@ -35,7 +31,7 @@ function makeGrid() {
     }
 }
 
-// Draw the cell with adding style for it.
+// Draw the cell
 function draw(current_td) {
     var tdCurrentColor = $('#' + current_td).css('background-color')
     var tdColor = isEraseSelected ? '#fff' : $('#colorPicker').val();
@@ -43,25 +39,23 @@ function draw(current_td) {
     $('.hidden').css('background-color', tdColor);
 
     if (!(tdCurrentColor === $('.hidden').css('background-color'))) {
-        clearUndoRedoManager();
+        clearUndo();
       $('#undo').removeAttr('disabled');
         styleNo++;
         var styleId = styleNo;
         $("<style id='" + styleId + "' type='text/css'> #" + current_td + "{ background-color: " + tdColor + ";}</style>").appendTo("head");
     }
     lastStyleId = styleId;
-
-    //current_td.css('background-color', tdColor);
 }
 
-function clearUndoRedoManager() {
-    undoRedoManager = [];
+function clearUndoRedo() {
+    undoRedo = [];
     $('#redo').attr('disabled', 'disabled');
     $('#undo').attr('disabled', 'disabled');
 }
 
 /******************
-* Event Listeners *
+*    Listeners    *
 *******************/
 
 // Sumbit button after user input.
@@ -69,12 +63,12 @@ $('#submit').click(function () {
     canvasWidth = $('#input_width').val();
     canvasHeight = $('#input_height').val();
     makeGrid();
-    
+
   for(var i = 0; i < styleNo; i++) {
     $('#' + i).remove();
   }
   styleNo = 0;
-    clearUndoRedoManager();
+    clearUndoRedo();
 });
 
 // Draw the color by clicking the cell
@@ -83,14 +77,16 @@ canvasCtl.on('mousedown', 'td', function () {
     isMouseDown = true;
 });
 
-// Draw the color while moving over the cells with pressing the mouse.
+// Continuous brush function
 canvasCtl.on('mousemove', 'td', function () {
     if (isMouseDown) {
         draw($(this).attr('id'));
     }
 });
 
-// Set the flag that will be using to stroke the drawing.
+
+
+
 $(document).mouseup(function () {
     isMouseDown = false;
 });
@@ -101,14 +97,14 @@ $('#erase').click(function () {
 });
 
 $('#redo').click(function () {
-    if (undoRedoManager.length > 0) {
-        var lastStyle = undoRedoManager.pop();
+    if (undoRedo.length > 0) {
+        var lastStyle = undoRedo.pop();
         $(lastStyle).appendTo("head");
         styleNo++;
         $('#undo').removeAttr('disabled');
     }
 
-    if (undoRedoManager.length === 0) {
+    if (undoRedo.length === 0) {
         $('#redo').attr('disabled', 'disabled');
     }
 });
@@ -117,7 +113,7 @@ $('#undo').click(function () {
     if (styleNo > 0) {
         var lastStyle = $('#' + styleNo).remove();
         styleNo--;
-        undoRedoManager.push(lastStyle);
+        undoRedo.push(lastStyle);
         $('#redo').removeAttr('disabled');
     }
 
