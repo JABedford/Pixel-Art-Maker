@@ -1,11 +1,15 @@
+// Variable declaration
 const canvasCtl = $('#pixel_canvas');
 var canvasWidth = 10;
 var canvasHeight = 10;
+
 var isMouseDown = false;
 var isEraseSelected = false;
+
 var tdNo = 0;
 var styleNo = 0;
-var undoRedo = [];
+
+var undoRedoManager = [];
 
 
 
@@ -31,7 +35,7 @@ function makeGrid() {
     }
 }
 
-// Draw the cell
+// Draw the cell with adding style for it.
 function draw(current_td) {
     var tdCurrentColor = $('#' + current_td).css('background-color')
     var tdColor = isEraseSelected ? '#fff' : $('#colorPicker').val();
@@ -39,23 +43,25 @@ function draw(current_td) {
     $('.hidden').css('background-color', tdColor);
 
     if (!(tdCurrentColor === $('.hidden').css('background-color'))) {
-        clearUndo();
+        clearUndoRedoManager();
       $('#undo').removeAttr('disabled');
         styleNo++;
         var styleId = styleNo;
         $("<style id='" + styleId + "' type='text/css'> #" + current_td + "{ background-color: " + tdColor + ";}</style>").appendTo("head");
     }
     lastStyleId = styleId;
+
+    //current_td.css('background-color', tdColor);
 }
 
-function clearUndoRedo() {
-    undoRedo = [];
+function clearUndoRedoManager() {
+    undoRedoManager = [];
     $('#redo').attr('disabled', 'disabled');
     $('#undo').attr('disabled', 'disabled');
 }
 
 /******************
-*    Listeners    *
+* Event Listeners *
 *******************/
 
 // Sumbit button after user input.
@@ -68,7 +74,7 @@ $('#submit').click(function () {
     $('#' + i).remove();
   }
   styleNo = 0;
-    clearUndoRedo();
+    clearUndoRedoManager();
 });
 
 // Draw the color by clicking the cell
@@ -77,16 +83,14 @@ canvasCtl.on('mousedown', 'td', function () {
     isMouseDown = true;
 });
 
-// Continuous brush function
+// Draw the color while moving over the cells with pressing the mouse.
 canvasCtl.on('mousemove', 'td', function () {
     if (isMouseDown) {
         draw($(this).attr('id'));
     }
 });
 
-
-
-
+// Set the flag that will be using to stroke the drawing.
 $(document).mouseup(function () {
     isMouseDown = false;
 });
@@ -97,14 +101,14 @@ $('#erase').click(function () {
 });
 
 $('#redo').click(function () {
-    if (undoRedo.length > 0) {
-        var lastStyle = undoRedo.pop();
+    if (undoRedoManager.length > 0) {
+        var lastStyle = undoRedoManager.pop();
         $(lastStyle).appendTo("head");
         styleNo++;
         $('#undo').removeAttr('disabled');
     }
 
-    if (undoRedo.length === 0) {
+    if (undoRedoManager.length === 0) {
         $('#redo').attr('disabled', 'disabled');
     }
 });
@@ -113,7 +117,7 @@ $('#undo').click(function () {
     if (styleNo > 0) {
         var lastStyle = $('#' + styleNo).remove();
         styleNo--;
-        undoRedo.push(lastStyle);
+        undoRedoManager.push(lastStyle);
         $('#redo').removeAttr('disabled');
     }
 
@@ -121,3 +125,4 @@ $('#undo').click(function () {
         $('#undo').attr('disabled', 'disabled');
     }
 });
+
