@@ -8,6 +8,7 @@
 
 body {
     text-align: center;
+    background-color: lightgray;
 }
 
 h1 {
@@ -26,14 +27,39 @@ h2 {
 h3 {
       font-family: 'Kavivanar', cursive;
   }
+
+h4 {
+  font-family: 'Kavivanar', cursive;
+}
+
 h2:first-of-type {
     margin-top: 0.5em;
 }
 
+#top, #bottom, #left, #right {
+	background: #fff;
+	position: fixed;
+	}
+	#left, #right {
+		top: 0; bottom: 0;
+		width: 125px;
+		}
+		#left { left: 0; }
+		#right { right: 0; }
+
+	#top, #bottom {
+		left: 0; right: 0;
+		height: 15px;
+		}
+		#top { top: 0; }
+		#bottom { bottom: 0; }
+
 button {
     font-family: 'Kavivanar', cursive;
-    font-size: 18px;
-    background-color: white;
+    background-color: gray;
+    font-size: 16px;
+    color: white;
+    border: 1px black;
 }
 
 table,
@@ -59,7 +85,6 @@ td {
 input[type=number] {
     width: 6em;
 }
-
 
 .features {
     padding: 10px;
