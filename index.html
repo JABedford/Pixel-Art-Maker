@@ -1,53 +1,69 @@
 <html>
-<head>
-    <title>Pixel Art Maker | Countryside Coder</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-<body>
 
+<head>
+  <title>Pixel Art Maker | Countryside Coder</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!--The border-->
   <div id="left"></div>
   <div id="right"></div>
   <div id="top"></div>
   <div id="bottom"></div>
 
   <div class="title">
-      <h1>Pixel Art Maker</h1>
-      <h2>Created by the Countryside Coder</h2>
+    <h1>Pixel Art Maker</h1>
+    <h2>Created by the Countryside Coder</h2>
     <br>
   </div>
 
   <div class="welcome">
-      <h3>Welcome! Could you be the next Picasso? Follow the instructions below to begin!</h3>
-      <h4>How big would you like your canvas to be?</h4>
-          <form id="sizePicker">
-              Canvas Height:
-              <input type="number" id="input_height" name="height" min="1" value="10">
-                  Canvas Width:
-                  <input type="number" id="input_width" name="width" min="1" value="10">
-                  <br>
-                  <br>
-                  <button id="submit" type="button">Submit</button >
+    <h3>Open the settings to get started.</h3>
+  </div>
+
+    <!-- Open the Pop-Up Box -->
+    <button id="myBtn">Settings</button>
+
+
+    <!-- The Box Itself -->
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span> <!--The cross to close the box-->
+
+      <h1>Settings</h1>
+      <br>
+      <form id="sizePicker">
+        Canvas Height:
+        <input type="number" id="input_height" name="height" min="1" value="10"> Canvas Width:
+        <input type="number" id="input_width" name="width" min="1" value="10">
+        <br>
+        <br>
+        <button id="submit" type="button">Submit</button >
           </form>
         <br>
         <h3>Great! Now Pick A Color!</h3>
         <input type="color" id="colorPicker">
-        <br>
-        <br>
+        <section class="features">
+            <button id="undo" disabled><img src="https://image.flaticon.com/icons/svg/391/391365.svg" height="20px" width="20px"/></button>
+            <button id="redo" disabled><img src="https://image.flaticon.com/icons/svg/391/391366.svg" height="20px" width="20px"/></button>
+            <button id="erase"><img src="https://image.flaticon.com/icons/svg/503/503728.svg" height="20px" width="20px"/></button>
+            <br>
+            <br>
+            <br>
+            </section>
+      </div>
+
+    <div class="canvas">
+        <table id="pixel_canvas"></table>
     </div>
 
-    <h3 id="designheader">Design Canvas</h3>
-    <table id="pixel_canvas"></table>
+    </div>
 
-    <section class="features">
-        <button id="undo" disabled><img src="https://image.flaticon.com/icons/svg/391/391365.svg" height="20px" width="20px"/></button>
-        <button id="redo" disabled><img src="https://image.flaticon.com/icons/svg/391/391366.svg" height="20px" width="20px"/></button>
-        <button id="erase"><img src="https://image.flaticon.com/icons/svg/503/503728.svg" height="20px" width="20px"/></button>
-    </section>
-
-  </div>
-    <div class="hidden"/>
     <script src="script.js"></script>
+
+
 </body>
+
 </html>
