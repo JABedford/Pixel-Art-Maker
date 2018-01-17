@@ -1,26 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
-@import url('https://fonts.googleapis.com/css?family=Homemade+Apple');
 @import url('https://fonts.googleapis.com/css?family=League+Script');
 @import url('https://fonts.googleapis.com/css?family=Kavivanar');
 
-
+/*************************/
+/* Main Elements Styling */
+/*************************/
 
 
 body {
     text-align: center;
     background-color: lightgray;
+    cursor: crosshair;
 }
 
 h1 {
     font-family: 'Fredericka the Great', cursive;
-    font-size: 120px;
+    font-size: 80px;
     font-weight: lighter;
     margin: 0.1em;
 }
 
 h2 {
       font-family: 'League Script', cursive;
-      font-size: 40px;
+      font-size: 35px;
       margin: 1em 0 0.25em;
 }
 
@@ -36,23 +38,9 @@ h2:first-of-type {
     margin-top: 0.5em;
 }
 
-#top, #bottom, #left, #right {
-	background: #fff;
-	position: fixed;
-	}
-	#left, #right {
-		top: 0; bottom: 0;
-		width: 125px;
-		}
-		#left { left: 0; }
-		#right { right: 0; }
-
-	#top, #bottom {
-		left: 0; right: 0;
-		height: 15px;
-		}
-		#top { top: 0; }
-		#bottom { bottom: 0; }
+.canvas {
+  margin-top: 50px;
+}
 
 button {
     font-family: 'Kavivanar', cursive;
@@ -125,14 +113,80 @@ input[type=number] {
     z-index: -1;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 button:disabled,
 button[disabled]{
   font-family: 'Kavivanar', cursive;
   border: 1px solid #999999;
   background-color: gray;
   color: #666666;
+}
+
+
+/**********************/
+/* The Border Styling */
+/**********************/
+
+#top, #bottom, #left, #right {
+	background: #000;
+	position: fixed;
+	}
+	#left, #right {
+		top: 0; bottom: 0;
+		width: 150px;
+		}
+		#left { left: 0; }
+		#right { right: 0; }
+
+	#top, #bottom {
+		left: 0; right: 0;
+		height: 15px;
+		}
+		#top { top: 0; }
+		#bottom { bottom: 0; }
+
+
+
+/********************************/
+/* The Modal (Settings) Styling */
+/********************************/
+
+.modal {
+
+    display: none; /* Hidden by default */
+    position: absolute;
+    z-index: 1;
+    left: 25%;
+    top: 25%;
+    width: 50%;
+    height: 50%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: #fff; /* Black w/ opacity */
+    box-shadow: 0 0 0 50vmax rgba(0,0,0,.8);
+}
+
+/* Modal Content/Box */
+.modal-content {
+    text-align: center;
+    background-color: #000;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    margin-right: 5px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
