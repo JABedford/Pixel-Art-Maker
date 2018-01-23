@@ -9,7 +9,7 @@
 
 body {
     text-align: center;
-    background-color: lightgray;
+    background-color: white;
     cursor: crosshair;
 }
 
@@ -20,15 +20,20 @@ h1 {
     margin: 0.1em;
 }
 
+.heading {
+    margin-top: 5%;
+}
+
 h2 {
-      font-family: 'League Script', cursive;
-      font-size: 35px;
+      font-family: 'Codystar', cursive;
+      font-size: 25px;
       margin: 1em 0 0.25em;
+      color: rgb(56, 83, 60)
 }
 
 h3 {
-      font-family: 'Kavivanar', cursive;
-  }
+      font-family: 'Codystar', cursive;
+}
 
 h4 {
   font-family: 'Kavivanar', cursive;
@@ -38,13 +43,20 @@ h2:first-of-type {
     margin-top: 0.5em;
 }
 
-.canvas {
-  margin-top: 50px;
+
+.tools {
+    width: 10px;
+    float: left;
+    position: absolute;
+}
+
+.mainbody {
+    margin-top: 50px;
 }
 
 button {
     font-family: 'Kavivanar', cursive;
-    background-color: gray;
+    background-color: rgb(253, 252, 252);
     font-size: 16px;
     color: white;
     border: 1px black;
@@ -53,7 +65,7 @@ button {
 table,
 tr,
 td {
-    border: 1px solid black;
+    border: 1px solid rgb(73, 73, 73);
 }
 
 table {
@@ -62,11 +74,11 @@ table {
 }
 
 tr {
-    height: 20px;
+    height: 30px;
 }
 
 td {
-    width: 20px;
+    width: 30px;
     background-color: #fff;
 }
 
@@ -77,7 +89,6 @@ input[type=number] {
 .features {
     padding: 10px;
     height: 20px;
-    margin: 10px;
 }
 
 .features img{
@@ -88,6 +99,25 @@ input[type=number] {
     background-color: gray;
 }
 
+.mainbody {
+    border: 1px solid rgb(233, 233, 233);
+    box-shadow: 2px 2px 8px 8px #e9e8e8;
+    padding: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 10%;
+    
+}
+
+#submit {
+    color: #000;
+    position: relative;
+    margin-top: 10%;
+    border-style: solid 1px black;
+}
+
 #designheader {
     padding: 0;
     margin: 5px;
@@ -96,6 +126,28 @@ input[type=number] {
 #sizePicker{
   font-family: 'Kavivanar', cursive;
   font-size: 18px;
+  text-align: center;
+}
+
+#colorPicker {
+    border: none;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+
+#undo {
+    margin-top: 10px;
+}
+
+#redo {
+    margin-top: 10px;
+}
+
+#erase {
+    margin-top: 10px;
 }
 
 #input_height {
@@ -116,9 +168,9 @@ input[type=number] {
 button:disabled,
 button[disabled]{
   font-family: 'Kavivanar', cursive;
-  border: 1px solid #999999;
-  background-color: gray;
-  color: #666666;
+  border: 1px solid #fcfafa;
+  background-color: rgb(250, 249, 249);
+  color: #fdfcfc;
 }
 
 
@@ -132,7 +184,7 @@ button[disabled]{
 	}
 	#left, #right {
 		top: 0; bottom: 0;
-		width: 150px;
+		width: 15px;
 		}
 		#left { left: 0; }
 		#right { right: 0; }
@@ -157,8 +209,8 @@ button[disabled]{
     z-index: 1;
     left: 25%;
     top: 25%;
-    width: 50%;
-    height: 50%;
+    width: 35%;
+    height: 40%;
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: #fff; /* Black w/ opacity */
@@ -172,7 +224,7 @@ button[disabled]{
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -189,4 +241,322 @@ button[disabled]{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+
+
+/********************************/
+/*       Pacman Animation       */
+/********************************/
+
+
+.display {
+    height:120px;
+    width:600px;
+    position:relative;
+    /*top:50%;*/
+    left:50%;
+    overflow:hidden;
+    border-top:2px solid #eeeeee;
+    border-bottom:2px solid #eeeeee;
+    margin:0 auto;
+    margin-top:80px;
+    margin-bottom: 50px;
+    margin-left:-300px;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    z-index: -1;
+}
+.overlay {
+    position:absolute;
+    z-index:999;
+    top:0;
+    left:0;
+    height:100%;
+    width:0;
+    background-color: #fff;
+    -moz-animation: eat 5s linear infinite;
+    -webkit-animation: eat 5s linear infinite;
+    animation: eat 5s linear infinite;
+    z-index: inherit;
+}
+.pacman {
+    position:absolute;
+    z-index:1000;
+    top:50%;
+    margin-top:-50px;
+    width: 100px;
+    height: 100px;
+    background-color:rgb(53, 53, 53);
+    border-radius: 100%;
+    z-index: inherit;
+}
+.pacman-mask {
+    width: 100px;
+    height: 100px;
+    margin-left:1px;
+    overflow:hidden;
+    border-radius: 100%;
+    position:relative;
+    -moz-background-clip:border;
+    -webkit-background-clip:border;
+    background-clip:border-box;
+    z-index: inherit;
+}
+.pacman-inner {
+    position:absolute;
+    top:50%;
+    right:0;
+    margin-top:-50px;
+    width: 100px;
+    height: 100px;
+    z-index: inherit;
+}
+.pacman-inner:after {
+    display:block;
+    position:absolute;
+    top:50px;
+    left:-50px;
+    content:" ";
+    width:0;
+    height:0;
+    border-top:50px solid transparent;
+    border-left:50px solid transparent;
+    border-right:50px solid transparent;
+    border-bottom:50px solid rgb(255, 255, 255);
+    -moz-animation: border 0.25s linear infinite;
+    -webkit-animation: border 0.25s linear infinite;
+    animation: border 0.25s linear infinite;
+    -moz-transform-origin:50% 0;
+    -webkit-transform-origin:50% 0;
+    transform-origin:50% 0;
+    -moz-transform:rotate(-90deg);
+    -webkit-transform:rotate(-90deg);
+    transform:rotate(-90deg);
+}
+.pacman-real {
+    -moz-animation: move 5s linear infinite;
+    -webkit-animation: move 5s linear infinite;
+    animation: move 5s linear infinite;
+}
+.pacman-mirror {
+    -moz-animation: move2 5s linear infinite;
+    -webkit-animation: move2 5s linear infinite;
+    animation: move2 5s linear infinite;
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    transform:rotate(180deg);
+}
+.pacman-mirror .pacman-inner:after {
+    -moz-animation-delay:0.25s ;
+    -webkit-animation-delay:0.25s ;
+    animation-delay: 0.25s;
+}
+.food {
+    color: #000;
+    width:20px;
+    height:20px;
+    position:absolute;
+    top:20%;
+    right: 45%;
+    align-content: center;
+    z-index: -2;
+}
+.food-1 {
+    left:40px;
+}
+.food-2 {
+    left:90px;
+}
+.food-3 {
+    left:140px;
+}
+.food-4 {
+    left:190px;
+}
+.food-5 {
+    left:240px;
+}
+.food-6 {
+    left:290px;
+}
+.food-7 {
+    left:340px;
+}
+.food-8 {
+    left:390px;
+}
+.food-9 {
+    left:440px;
+}
+.food-10 {
+    left:490px;
+}
+.food-11 {
+    left:540px;
+}
+.food-12 {
+    left:590px;
+}
+
+@-moz-keyframes border {
+    0% {
+        margin-left:0;
+        border-left:50px solid transparent;
+        border-right:50px solid transparent;
+    }
+    50% {
+        margin-left:50px;
+        border-left:0 solid transparent;
+        border-right:0 solid transparent;
+    }
+    100% {
+        margin-left:0;
+        border-left:50px solid transparent;
+        border-right:50px solid transparent;
+    }
+}
+@-webkit-keyframes border {
+    0% {
+        margin-left:0;
+        border-left:50px solid transparent;
+        border-right:50px solid transparent;
+    }
+    50% {
+        margin-left:50px;
+        border-left:0 solid transparent;
+        border-right:0 solid transparent;
+    }
+    100% {
+        margin-left:0;
+        border-left:50px solid transparent;
+        border-right:50px solid transparent;
+    }
+}
+@keyframes border {
+    0% {
+        margin-left:0;
+        border-left:50px solid transparent;
+        border-right:50px solid transparent;
+    }
+    50% {
+        margin-left:50px;
+        border-left:0 solid transparent;
+        border-right:0 solid transparent;
+    }
+    100% {
+        margin-left:0;
+        border-left:50px solid transparent;
+        border-right:50px solid transparent;
+    }
+}
+@-moz-keyframes move {
+    0% {
+        left:-100px;
+    }
+    50% {
+        left:600px;
+    }
+    100% {
+        left:600px;
+    }
+}
+@-webkit-keyframes move {
+    0% {
+        left:-100px;
+    }
+    50% {
+        left:600px;
+    }
+    100% {
+        left:600px;
+    }
+}
+@keyframes move {
+    0% {
+        left:-100px;
+    }
+    50% {
+        left:600px;
+    }
+    100% {
+        left:600px;
+    }
+}
+@-moz-keyframes move2 {
+    0% {
+        left:-100px;
+    }
+    50% {
+        left:-100px;
+    }
+    100% {
+        left:600px;
+    }
+}
+@-webkit-keyframes move2 {
+    0% {
+        left:-100px;
+    }
+    50% {
+        left:-100px;
+    }
+    100% {
+        left:600px;
+    }
+}
+@keyframes move2 {
+    0% {
+        left:-100px;
+    }
+    50% {
+        left:-100px;
+    }
+    100% {
+        left:600px;
+    }
+}
+@-moz-keyframes eat {
+    0% {
+        width:0;
+        margin-left:0;
+    }
+    50% {
+        width:600px;
+        margin-left:0;
+    }
+    100% {
+        width:0;
+        margin-left:600px;
+    }
+}
+@-webkit-keyframes eat {
+    0% {
+        width:0;
+        margin-left:0;
+    }
+    50% {
+        width:600px;
+        margin-left:0;
+    }
+    100% {
+        width:0;
+        margin-left:600px;
+    }
+}
+@keyframes eat {
+    0% {
+        width:0;
+        margin-left:0;
+    }
+    50% {
+        width:600px;
+        margin-left:0;
+    }
+    100% {
+        width:0;
+        margin-left:600px;
+    }
 }
