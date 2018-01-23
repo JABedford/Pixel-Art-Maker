@@ -15,6 +15,10 @@ $(document).ready(makeGrid());
 
 
 
+$("[type='number']").keypress(function (evt) {
+  evt.preventDefault();
+});
+
 /*****************
 *     Lightbox    *
 ******************/
