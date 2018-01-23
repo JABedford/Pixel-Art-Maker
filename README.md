@@ -16,12 +16,5 @@ My Pixel Art Maker project for the Udacity Scholarship. A single page web applic
 
 
 
-
-
-# To-Do List
-- Different color for eraser button once selected so you know that the eraser is in use.
-- Take tools out of modal box, and use that solely for the resizing of the canvas.
-- Have 5-10 preset colors down the side of the canvas.
-- Have the eraser down the side of the canvas.
-- Have the redo/undo buttons down the side of the canvas.
-- Sort of styling issues.
+# Update 23/01/2018
+Project Completed! 
