@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Codystar" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
 </head>
 
 <body>
@@ -14,52 +16,72 @@
   <div id="top"></div>
   <div id="bottom"></div>
 
+  <!--Pacman Title-->
   <div class="title">
-    <h1>Pixel Art Maker</h1>
-    <h2>Created by the Countryside Coder</h2>
+      <div class="display">
+          <div class="overlay"></div>
+          <div class="pacman pacman-real">
+            <div class="pacman-mask">
+              <div class="pacman-inner"></div>
+            </div>
+          </div>
+          <div class="pacman pacman-mirror">
+            <div class="pacman-mask">
+              <div class="pacman-inner"></div>
+            </div>
+          </div>
+          <div class="food food-1"><h3>P</h3></div>
+          <div class="food food-2"><h3>I</h3></div>
+          <div class="food food-3"><h3>X</h3></div>
+          <div class="food food-4"><h3>E</h3></div>
+          <div class="food food-5"><h3>L</h3></div>
+          <div class="food food-6"><h3></h3></div>
+          <div class="food food-7"><h3></h3></div>
+          <div class="food food-8"><h3></h3></div>
+          <div class="food food-9"><h3>A</h3></div>
+          <div class="food food-10"><h3>R</h3></div>
+          <div class="food food-11"><h3>T</h3></div>
+        </div>
     <br>
   </div>
 
-  <div class="welcome">
-    <h3>Open the settings to get started.</h3>
-  </div>
-
-    <!-- Open the Pop-Up Box -->
-    <button id="myBtn">Settings</button>
 
 
-    <!-- The Box Itself -->
+
+    <!-- Modal Box -->
     <div id="myModal" class="modal">
       <span class="close">&times;</span> <!--The cross to close the box-->
 
-      <h1>Settings</h1>
+      <h2>Settings</h2>
       <br>
       <form id="sizePicker">
-        Canvas Height:
-        <input type="number" id="input_height" name="height" min="1" value="10"> Canvas Width:
-        <input type="number" id="input_width" name="width" min="1" value="10">
-        <br>
-        <br>
-        <button id="submit" type="button">Submit</button >
-          </form>
-        <br>
-        <h3>Great! Now Pick A Color!</h3>
-        <input type="color" id="colorPicker">
-        <section class="features">
-            <button id="undo" disabled><img src="https://image.flaticon.com/icons/svg/391/391365.svg" height="20px" width="20px"/></button>
-            <button id="redo" disabled><img src="https://image.flaticon.com/icons/svg/391/391366.svg" height="20px" width="20px"/></button>
-            <button id="erase"><img src="https://image.flaticon.com/icons/svg/503/503728.svg" height="20px" width="20px"/></button>
-            <br>
-            <br>
-            <br>
-            </section>
+        <p>Canvas Height: </p><input type="number" id="input_height" name="height" min="1" value="10"> 
+        <p>Canvas Width: </p><input type="number" id="input_width" name="width" min="1" max="15" value="10">
+        <section><button id="submit" type="button">Submit</button></section>
+        
+      </form>
       </div>
 
-    <div class="canvas">
-        <table id="pixel_canvas"></table>
+
+      <div class="mainBody">
+
+      <div class="tools">
+          <!-- Open the Pop-Up Box -->
+          <button id="myBtn"><img src="https://image.flaticon.com/icons/svg/126/126472.svg" height="20px" width="20px"/></button>
+          <button id="undo" disabled><img src="https://image.flaticon.com/icons/svg/34/34435.svg" height="20px" width="20px"/></button>
+          <button id="redo" disabled><img src="https://image.flaticon.com/icons/svg/34/34247.svg" height="20px" width="20px"/></button>
+          <button id="erase"><img src="https://image.flaticon.com/icons/svg/694/694991.svg" height="20px" width="20px"/></button>
+          <input type="color" id="colorPicker">
+        </div>
+
+      <div class="canvas">
+          <table id="pixel_canvas"></table>
+      </div>
+      </div>
     </div>
 
-    </div>
+    
+    
 
     <script src="script.js"></script>
 
